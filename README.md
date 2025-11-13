@@ -51,6 +51,14 @@ Este repositorio presenta la solución de una prueba técnica realizada en clase
 
 ---
 
+## Evidencias
+
+1. Evidencia Login 
+<img src="/imgs/front 3.PNG">
+<img src="/imgs/front 4.PNG">
+<img src="/imgs/front 5.PNG">
+<img src="/imgs/front 6.PNG">
+
 ## Autoría  
 Este proyecto fue desarrollado como material educativo para estudiantes de BIT +. Si tienes preguntas o sugerencias, no dudes en contactarme.  
 

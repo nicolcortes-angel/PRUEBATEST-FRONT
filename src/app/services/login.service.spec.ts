@@ -7,8 +7,8 @@ import { provideHttpClientTesting, HttpTestingController } from "@angular/common
 
 describe("pruebas de el servicio de Login", ()=> {
 
-    let httpMock = HttpTestingController; 
-    let service = LoginService;
+    let httpMock : HttpTestingController; 
+    let service : LoginService;
 
     const credencialMock ={
         email: "pepita@gmail.com",
@@ -22,12 +22,57 @@ describe("pruebas de el servicio de Login", ()=> {
         TestBed.configureTestingModule({
             providers: [
                 LoginService,
-                provideHttpClient,
-                provideHttpClientTesting
+                provideHttpClient(),
+                provideHttpClientTesting()
             ]
-        }
+        })
 
+        httpMock = TestBed.inject(HttpTestingController);
+        service = TestBed.inject(LoginService)
+
+    });
+
+    it("caso 1: Simular la la peticion POST para iniciar sesion", ()=>{
+        const apiUrl = "http://localhost:9000/iniciarSesion"
+        const responseMock = {"mensaje": "inicio de sesion exitoso"}
+
+        service.login(
+            credencialMock.email, credencialMock.password
+        ).subscribe(
+            (res) => {
+                expect(res).toEqual(responseMock);
+            }
         )
+
+        // simulacion de peticion a backend 
+
+        const req = httpMock.expectOne(apiUrl) //esa simulacion se espera que sea igual a la url dada 
+        expect(req.request.method).toBe("POST")
+        req.flush(responseMock)
+    })
+
+
+    it("caso 2: Obtener token", ()=>{
+        localStorage.setItem("token", tokenMock);
+        expect(service.getToken()).toBe(tokenMock)
+
+
+    });
+
+
+
+    it("caso 3: Verificar si esta logeado o no", ()=>{
+        localStorage.setItem("token", tokenMock);
+        expect(service.isLoggedIn()).toBeTrue();
+
+    });
+
+
+
+    it("caso 4: Verificar si se cierra sesion", ()=>{
+         localStorage.setItem("token", tokenMock);
+         service.logout();
+         expect(localStorage.getItem("token")).toBeNull();
 
     });
 })

@@ -59,6 +59,9 @@ Este repositorio presenta la solución de una prueba técnica realizada en clase
 <img src="/imgs/front 5.PNG">
 <img src="/imgs/front 6.PNG">
 
+2. falla
+<img src="/imgs/front 1.PNG">
+
 ## Autoría  
 Este proyecto fue desarrollado como material educativo para estudiantes de BIT +. Si tienes preguntas o sugerencias, no dudes en contactarme.  
 
